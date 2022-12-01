@@ -1,12 +1,13 @@
-SRC_DIR=.
+SRC_DIR=test_jenkins
 
-all: clean sloc test flakes lint
+all: clean sloc test flakes lint clone
 
 sloc:
 	sloccount --duplicates --wide --details $(SRC_DIR) | fgrep -v .git > sloccount.sc || :
 
 test:
-	cd $(SRC_DIR) && nosetests --verbose --with-xunit --xunit-file=../xunit.xml --with-xcoverage --xcoverage-file=../coverage.xml || :
+	pytest tests/
+	# cd $(SRC_DIR) && nosetests --verbose --with-xunit --xunit-file=../xunit.xml --with-xcoverage --xcoverage-file=../coverage.xml || :
 
 flakes:
 	find $(SRC_DIR) -name *.py|egrep -v '^./tests/'|xargs pyflakes  > pyflakes.log || :
@@ -24,5 +25,3 @@ clean:
 	rm -f output.xml
 	rm -f coverage.xml
 	rm -f xunit.xml
-
-
