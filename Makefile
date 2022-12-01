@@ -1,6 +1,6 @@
 SRC_DIR=test_jenkins
 
-all: clean install sloc test flakes lint clone
+all: clean install sloc test flakes lint # clone
 
 install: 
 	pip install -e .
