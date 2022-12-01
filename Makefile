@@ -1,7 +1,9 @@
 SRC_DIR=test_jenkins
 
-all: clean sloc test flakes lint clone
+all: clean install sloc test flakes lint clone
 
+install: 
+	pip install -e .
 sloc:
 	sloccount --duplicates --wide --details $(SRC_DIR) | fgrep -v .git > sloccount.sc || :
 
