@@ -8,7 +8,7 @@ sloc:
 	sloccount --duplicates --wide --details $(SRC_DIR) | fgrep -v .git > sloccount.sc || :
 
 test:
-	pytest tests/
+	pytest tests/ --cov-report term --cov-report xml:coverage.xml
 	# cd $(SRC_DIR) && nosetests --verbose --with-xunit --xunit-file=../xunit.xml --with-xcoverage --xcoverage-file=../coverage.xml || :
 
 flakes:
