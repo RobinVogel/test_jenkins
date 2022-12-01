@@ -8,7 +8,7 @@ sloc:
 	sloccount --duplicates --wide --details $(SRC_DIR) | fgrep -v .git > sloccount.sc || :
 
 test:
-	pytest tests/ --cov-report term --cov-report xml:coverage.xml --cov=test_jenkins --junitxml=xunit.xml
+	pytest tests/ --cov-report term --cov-report xml:cobertura.xml --cov=test_jenkins --junitxml=xunit.xml
 	# cd $(SRC_DIR) && nosetests --verbose --with-xunit --xunit-file=../xunit.xml --with-xcoverage --xcoverage-file=../coverage.xml || :
 
 flakes:
@@ -25,5 +25,5 @@ clean:
 	rm -f pylint.log
 	rm -f sloccount.sc
 	rm -f output.xml
-	rm -f coverage.xml
+	rm -f cobertura.xml
 	rm -f xunit.xml
